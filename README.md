@@ -177,7 +177,7 @@ The application requires a few environment variables for proper functioning. The
 GOOGLE_API_KEY=your_google_api_key_here
 FLASK_ENV=development
 SECRET_KEY=supersecretkey
-
+```
 
 ## 🤝 Contributing
 
