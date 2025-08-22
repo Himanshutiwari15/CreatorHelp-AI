@@ -203,3 +203,9 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 * [Flask](https://flask.palletsprojects.com/) for the web framework
 * [Bootstrap](https://getbootstrap.com/) for the UI components
 
+## EXAMPLE WORKING
+
+![img1](https://github.com/user-attachments/assets/fe0f8836-4c54-42b1-9bd3-69d58c9ff071)
+![img4](https://github.com/user-attachments/assets/8b4edba5-0d1e-4dc3-8883-423b389c5c77)
+![img3](https://github.com/user-attachments/assets/0eb8a30b-3f0a-4ec2-a57d-e3ab0ce7404c)
+![img2](https://github.com/user-attachments/assets/ff51d532-b011-4700-b8c8-f9a35b056e34)
