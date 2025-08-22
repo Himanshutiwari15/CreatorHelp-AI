@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Video</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-5">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="text-center">Processing Your Video</h1>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p id="statusText">Starting...</p>
+                        <div class="progress">
+                            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                        </div>
+                        <p class="mt-3 text-muted">This may take a few minutes depending on the video length</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const taskId = "{{ task_id }}";
+        let statusCheckInterval;
+        
+        function checkStatus() {
+            fetch(`/status/${taskId}`)
+                .then(response => response.json())
+                .then(data => {
+                    updateProgress(data.status);
+                    
+                    if (data.status === 'completed') {
+                        clearInterval(statusCheckInterval);
+                        window.location.href = `/results/${taskId}`;
+                    } else if (data.status === 'error') {
+                        clearInterval(statusCheckInterval);
+                        alert('Error: ' + data.error);
+                        window.location.href = '/';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking status:', error);
+                });
+        }
+        
+        function updateProgress(status) {
+            const statusText = document.getElementById('statusText');
+            const progressBar = document.getElementById('progressBar');
+            
+            statusText.textContent = getStatusText(status);
+            
+            const progressMap = {
+                'starting': 5,
+                'downloading_audio': 15,
+                'transcribing': 30,
+                'generating_summary': 45,
+                'generating_posts': 60,
+                'downloading_video': 70,
+                'identifying_segment': 80,
+                'extracting_clip': 90,
+                'generating_ai_video': 95,
+                'completed': 100
+            };
+            
+            progressBar.style.width = `${progressMap[status] || 0}%`;
+        }
+        
+        function getStatusText(status) {
+            const statusMap = {
+                'starting': 'Starting...',
+                'downloading_audio': 'Downloading audio...',
+                'transcribing': 'Transcribing audio...',
+                'generating_summary': 'Generating summary...',
+                'generating_posts': 'Creating social media posts...',
+                'downloading_video': 'Downloading video...',
+                'identifying_segment': 'Identifying best segment...',
+                'extracting_clip': 'Extracting video clip...',
+                'generating_ai_video': 'Generating AI video content...',
+                'completed': 'Completed!'
+            };
+            
+            return statusMap[status] || status;
+        }
+        
+        // Start checking status
+        statusCheckInterval = setInterval(checkStatus, 2000);
+        checkStatus(); // Initial check
+    </script>
+</body>
+</html>
