@@ -160,25 +160,8 @@ Before you begin, ensure you have the following installed:
 
 ## 📁 Project Structure
 
-creatorhelp-ai/
-├── app.py                 # Main Flask application
-├── requirements.txt       # Python dependencies
-├── .env.example          # Environment variables template
-├── .gitignore            # Git ignore rules
-├── README.md             # Project documentation
-├── LICENSE               # MIT License
-├── CHANGELOG.md           # Version history
-├── CONTRIBUTING.md        # Contribution guidelines
-├── static/
-│   ├── css/
-│   │   └── style.css   # Application styles
-│   ├── js/
-│   │   └── script.js   # Client-side scripts
-│   └── videos/          # Generated video clips (not tracked)
-└── templates/
-    ├── index.html       # Home page
-    ├── loading.html     # Progress tracking page
-    └── results.html      # Results display page
+<img width="439" height="387" alt="image" src="https://github.com/user-attachments/assets/e324f191-68d7-467a-a043-1e4f6b462e2c" />
+
 
 ## 🔑 Configuration
 
