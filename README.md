@@ -1,4 +1,4 @@
-# YouTube to Social Media Converter
+# YouTube Video to Social Media ContentConverter
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)
